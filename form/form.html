@@ -1,0 +1,197 @@
+
+
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+	<html>
+		<div id="top">
+			<img src="BSPG252x61.gif" alt="Blue Star Group - Australia Intranet Site" />
+		</div>
+	<head>
+		
+		<title>Luxottica Stock Report</title>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"><link href="style.css" rel="stylesheet" type="text/css">
+		<!-- calendar stuff -->
+		      <link rel="stylesheet" type="text/css" href="calendar/calendar-blue2.css" />
+		      <script type="text/javascript" src="calendar/calendar.js"></script>
+		      <script type="text/javascript" src="calendar/calendar-en.js"></script>
+		      <script type="text/javascript" src="calendar/calendar-setup.js"></script>
+		<!-- END calendar stuff -->
+			<script type="text/javascript">
+			 
+
+			 function makeRequest(id)
+			  {
+				 httpRequest = new XMLHttpRequest();
+				 httpRequest.open('GET', 'http://localhost:8080/BS/form/lux_stock_query.php?id=' + id);
+				 httpRequest.onreadystatechange = function()
+				 {
+					if (httpRequest.readyState == 4) {       // The request is complete
+					  alert(httpRequest.responseText);       // Display the result
+					}
+				 }
+				 httpRequest.send(null);
+			  }
+			  </script>
+	  
+
+		
+		
+
+
+		 <!-- validate -->
+		<SCRIPT type=text/javascript>
+		<!--
+		
+
+			function validateDate(fieldId, fieldBoxId, fieldType, required,  minDateStr, maxDateStr)
+			{
+				retValue = true;
+
+				fieldBox = document.getElementById(fieldBoxId);
+				fieldObj = document.getElementById(fieldId);	
+				dateStr = fieldObj.value;
+
+
+				if(required == 0  && dateStr == '')
+				{
+					return true;
+				}
+
+
+				if(dateStr.charAt(2) != '/'  || dateStr.charAt(5) != '/' || dateStr.length != 10)
+				{
+					retValue = false;
+				}	
+
+				else	// format's okay; check max, min
+				{
+					currDays = parseInt(dateStr.substr(0,2),10) + parseInt(dateStr.substr(3,2),10)*30  + parseInt(dateStr.substr(6,4),10)*365;
+					//alert(currDays);
+
+					if(maxDateStr != '')
+					{
+						maxDays = parseInt(maxDateStr.substr(0,2),10) + parseInt(maxDateStr.substr(3,2),10)*30  + parseInt(maxDateStr.substr(6,4),10)*365;
+						//alert(maxDays);
+						if(currDays > maxDays)
+							retValue = false;
+					}
+
+					if(minDateStr != '')
+					{
+						minDays = parseInt(minDateStr.substr(0,2),10) + parseInt(minDateStr.substr(3,2),10)*30  + parseInt(minDateStr.substr(6,4),10)*365;
+						//alert(minDays);
+						if(currDays < minDays)
+							retValue = false;
+					}
+				}
+
+				if(retValue == false)
+				{
+					fieldObj.setAttribute("class","mainFormError");
+					fieldObj.setAttribute("className","mainFormError");
+					fieldObj.focus();
+					return false;
+				}
+			}
+		//-->
+		</SCRIPT>
+		<!-- end validate -->
+
+
+
+
+	</head>
+
+	
+
+	<div id="mainForm">
+
+		
+
+	
+
+		<div id="formHeader">
+				<h2 class="formInfo">BSPG LUX STOCK</h2>
+				<p class="formInfo">Lux Stock Report</p>
+		</div>
+		<form name="EmpForm" method="post">
+		  Enter From Date:
+		  <input type="text" value="03/09/2014" name="id"><button type=reset class=calendarStyle id=fieldDateTrigger_1></button><SCRIPT type='text/javascript'>   Calendar.setup({
+								inputField     :    "id",   
+								ifFormat       :    "%m/%d/%Y",   
+								showsTime      :    false,          
+								button         :    "fieldDateTrigger_1",
+								singleClick    :    true,           
+								step           :    1                
+								});</SCRIPT>
+		  <input type="button" value="Submit" onclick="makeRequest(EmpForm.id.value);">
+		</form>
+
+		<BR/><!-- begin form -->
+		
+	<!--	<form name="DateForm" method=post enctype=multipart/form-data ><ul class=mainForm id="mainForm_1">-->
+
+				<!--<li class="mainForm" id="id">
+					<label class="formFieldQuestion">From Date&nbsp;*&nbsp;<a class=info href=#><img src=imgs/tip_small.png border=0><span class=infobox>From Date</span></a></label><input type=text   value="03/09/2014"  name="id" id="id" ><button type=reset class=calendarStyle id=fieldDateTrigger_1></button><SCRIPT type='text/javascript'>   Calendar.setup({
+								inputField     :    "id",   
+								ifFormat       :    "%m/%d/%Y",   
+								showsTime      :    false,          
+								button         :    "fieldDateTrigger_1",
+								singleClick    :    true,           
+								step           :    1                
+								});</SCRIPT></li>
+
+				<li class="mainForm" id="fieldBox_2">
+					<label class="formFieldQuestion">To Date&nbsp;*&nbsp;<a class=info href=#><img src=imgs/tip_small.png border=0><span class=infobox>To Date</span></a></label><input type=text  value="03/09/2014" name=field_2 id=field_2 value=""><button type=reset class=calendarStyle id=fieldDateTrigger_2></button><SCRIPT type='text/javascript'>   Calendar.setup({
+								inputField     :    "field_2",   
+								ifFormat       :    "%m/%d/%Y",   
+								showsTime      :    false,          
+								button         :    "fieldDateTrigger_2",
+								singleClick    :    true,           
+								step           :    1                
+								});</SCRIPT></li>
+		
+		
+		<!-- end of this page -->
+
+		<!-- page validation -->
+		<SCRIPT type=text/javascript>
+		<!--
+			function validatePage1()
+			{
+				retVal = true;
+				if (validateDate('field_1','id','date',1,'','') == false)
+				 retVal=false;
+				if (validateDate('field_2','fieldBox_2','date',1,'','') == false)
+				 retVal=false;
+
+				if(retVal == false)
+				{
+					alert('Please correct the errors.  Fields marked with an asterisk (*) are required');
+					return false;
+				}
+				return retVal;
+				
+			}
+		//-->
+		</SCRIPT>
+
+		<!-- end page validaton -->
+
+
+
+		<!-- next page buttons --><li class="mainForm">
+				<!-- <input id="saveForm" class="mainForm" type="submit" value="Submit" onSubmit="makeRequest(DateForm.id.value);">
+				
+				</li>
+
+			</form>-->
+			<!-- end of form -->
+		<!-- close the display stuff for this page -->
+		</ul></div>
+		
+
+	</body>
+	</html>
+	
+	
+	

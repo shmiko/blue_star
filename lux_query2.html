@@ -1,0 +1,10 @@
+<html>
+   <body>
+      <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+         <textarea name="html"></textarea><br />
+         <input type="submit" /><br />
+      </form>
+      Preview:<br />
+      <?php if(isset($_POST['html'])) echo stripslashes($_POST['html']); ?>
+   </body>
+</html>

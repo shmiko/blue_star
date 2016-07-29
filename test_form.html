@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Audit Activity Report</title>
+</head>
+<body>
+<h4>Audit Activity Report</h4>
+
+<?php
+ if (!$_REQUEST['Submit']) { 
+   html_form(); 
+} else
+{ 
+ select_cd();  
+ }
+
+function html_form()
+{
+?>
+<p>Please enter the fields you would like to run a report on:</p>
+
+<form name="Audit Activity Report" method="post" action="<? echo $_SERVER['PHP_SELF']; ?>">
+<p>
+Employee BEMS: <input name="EmployeeBEMS" type="text" size="10" maxlength="10"> </p>
+<p>Escort BEMS:
+<input name="EscortBEMS" type="text" size="10" maxlength="10">
+</p>
+<p>Current Activity ID:
+<input name="CurrentActivityID" type="text" size="20" maxlength="20">
+</p>
+<p>
+<label for="LaborTraining">LaborTraining:</label>
+<select name="LaborTraining2" id="LaborTraining">
+<option>Yes</option>
+<option>No</option>
+</select>
+</p>
+<p>
+<label for="EthicsTraining">Ethics Training:</label>
+<select name="EthicsTraining" id="EthicsTraining">
+<option>Yes</option>
+<option>No</option>
+</select>
+</p>
+<p>
+<label for="WorkAuthorization">Work Authorization:</label>
+<select name="WorkAuthorization" id="WorkAuthorization">
+<option>Yes</option>
+<option>No</option>
+</select>
+</p>
+<p>
